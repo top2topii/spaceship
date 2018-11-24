@@ -20,7 +20,7 @@ public:
 	Spaceship(LTexture *, const int, const int);
 
 	//Takes key presses and adjusts the dot's velocity
-	void handleEvent(SDL_Event& e);
+	bool handleEvent(SDL_Event& e);
 
 	//Moves the dot
 	void move(float timeStep);

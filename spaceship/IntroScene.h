@@ -18,6 +18,8 @@ public:
 	bool loadMedia();
 	void handleEvent(SDL_Event &e);
 
+	void nextScene();
+
 	SceneManager* mSceneManager;
 
 	//The window we'll be rendering to

@@ -76,7 +76,7 @@ void SceneManager::changeScene(short id) {
 		mScene = new IntroScene(this);
 		mOldScene = mScene;
 	}
-	else if (id == ID_GAMERUN_SCENT) {
+	else if (id == ID_GAMERUN_SCENE) {
 		mScene = new GamerunScene(this);
 		mOldScene = mScene;
 	}
@@ -84,6 +84,13 @@ void SceneManager::changeScene(short id) {
 	if (mScene) {
 		// TODO: make the scene visible.
 		mScene->start();
+	}
+}
+
+void SceneManager::nextScene(short id) {
+
+	if (id == ID_INTRO_SCENE) {
+		changeScene(ID_GAMERUN_SCENE);
 	}
 }
 

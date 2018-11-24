@@ -15,7 +15,10 @@ public:
 	virtual void start();
 	virtual void free();
 
+	bool loadMedia();
 	void handleEvent(SDL_Event &e);
+
+	void nextScene();
 
 	SceneManager* mSceneManager;
 

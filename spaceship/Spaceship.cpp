@@ -25,7 +25,7 @@ Spaceship::Spaceship(LTexture * texture, const int width, const int height)
 }
 
 
-void Spaceship::handleEvent(SDL_Event& e)
+bool Spaceship::handleEvent(SDL_Event& e)
 {
 	//If a key was pressed
 	if (e.type == SDL_KEYDOWN && e.key.repeat == 0)
@@ -42,6 +42,8 @@ void Spaceship::handleEvent(SDL_Event& e)
 	//If a key was released
 	else if (e.type == SDL_KEYUP && e.key.repeat == 0)
 	{
+		std::string debug_msg;
+
 		//Adjust the velocity
 		switch (e.key.keysym.sym)
 		{
@@ -50,13 +52,18 @@ void Spaceship::handleEvent(SDL_Event& e)
 		case SDLK_LEFT: mVelX += DOT_VEL; break;
 		case SDLK_RIGHT: mVelX -= DOT_VEL; break;
 		case SDLK_w:
-			std::string debug_msg = "xpos:" + std::to_string(mPosX) \
+			debug_msg = "xpos:" + std::to_string(mPosX) \
 				+ ", ypos:" + std::to_string(mPosY);
 
 			debug_print(debug_msg);
 			break;
+		case SDLK_F12:
+			return true;	// scene exit
+			break;
 		}
 	}
+
+	return false;
 }
 
 void Spaceship::move(float timeStep)

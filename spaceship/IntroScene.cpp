@@ -23,6 +23,7 @@ void IntroScene::start()
 
 	//Main loop flag
 	bool quit = false;
+	bool next = false;
 
 	//Event handler
 	SDL_Event e;
@@ -53,7 +54,11 @@ void IntroScene::start()
 
 			//Handle input for the dot
 			//bullet.handleEvent(e);
-			myship.handleEvent(e);
+			if (myship.handleEvent(e)) {
+				// scene exit
+				quit = true;
+				next = true;
+			}
 		}
 
 		//Calculate time step
@@ -77,6 +82,8 @@ void IntroScene::start()
 		//Update screen
 		SDL_RenderPresent(mRenderer);
 	}
+
+	if (next) nextScene();
 }
 
 bool IntroScene::loadMedia() {
@@ -100,10 +107,16 @@ void IntroScene::free()
 	}
 }
 
-void IntroScene::handleEvent(SDL_Event& e) {
-
+void IntroScene::nextScene()
+{
+	mSceneManager->nextScene(ID_INTRO_SCENE);
 }
 
-IntroScene::~IntroScene() {
+void IntroScene::handleEvent(SDL_Event& e)
+{
+}
+
+IntroScene::~IntroScene()
+{
 	free();
 }
